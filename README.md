@@ -287,6 +287,6 @@ Special thanks to:
 
 ---
 
-This project was created for educational purposes as part of a college assignment.
+This project was created for task purposes as part of a dailo technologies pvt ltd.
 
 Last Updated: December 2025
