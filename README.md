@@ -108,7 +108,7 @@ Prajjwal_Ghimire_SMS/
 
 **Step 1: Clone the Repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/Prajjwal_Ghimire_SMS.git
+git clone https://github.com/Prajol10/Prajjwal_Ghimire_SMS.git
 cd Prajjwal_Ghimire_SMS
 ```
 
