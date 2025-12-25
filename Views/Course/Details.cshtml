@@ -1,0 +1,31 @@
+@model Prajjwal_Ghimire_SMS.Models.Course
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<div class="container mt-4">
+    <h2>Course Details</h2>
+    <hr />
+    
+    <dl class="row">
+        <dt class="col-sm-3">Course Code</dt>
+        <dd class="col-sm-9">@Model.Code</dd>
+        
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+        
+        <dt class="col-sm-3">Credits</dt>
+        <dd class="col-sm-9">@Model.Credits</dd>
+        
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">@Model.Description</dd>
+    </dl>
+    
+    <div>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        }
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

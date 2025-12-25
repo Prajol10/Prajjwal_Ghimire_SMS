@@ -1,0 +1,41 @@
+@model Prajjwal_Ghimire_SMS.Models.Student
+@{
+    ViewData["Title"] = "Delete Student";
+}
+
+<div class="container mt-4">
+    <h2>Delete Student</h2>
+    <h3 class="text-danger">Are you sure you want to delete this student?</h3>
+    <hr />
+    
+    <div class="row">
+        <div class="col-md-4">
+            @if (!string.IsNullOrEmpty(Model.ImagePath))
+            {
+                <img src="@Model.ImagePath" alt="@Model.Name" class="img-fluid rounded" />
+            }
+        </div>
+        
+        <div class="col-md-8">
+            <dl class="row">
+                <dt class="col-sm-4">Name</dt>
+                <dd class="col-sm-8">@Model.Name</dd>
+                
+                <dt class="col-sm-4">Email</dt>
+                <dd class="col-sm-8">@Model.Email</dd>
+                
+                <dt class="col-sm-4">Class</dt>
+                <dd class="col-sm-8">@Model.Class</dd>
+                
+                <dt class="col-sm-4">Section</dt>
+                <dd class="col-sm-8">@Model.Section</dd>
+            </dl>
+        </div>
+    </div>
+    
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

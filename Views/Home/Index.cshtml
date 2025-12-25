@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Prajjwal Ghimire SMS</h1>
+    <p class="lead">Student Management System</p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h3>📚 Courses</h3>
+                <p>Manage and view all available courses in the system.</p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Course" asp-action="Index" class="btn btn-primary">View Courses</a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Login to Access</a>
+                }
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h3>👨‍🎓 Students</h3>
+                <p>View and manage student information and profiles.</p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Student" asp-action="Index" class="btn btn-primary">View Students</a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Login to Access</a>
+                }
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h3>🔐 Account</h3>
+                <p>Login or register to access the system features.</p>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-success">Login</a>
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-outline-success">Register</a>
+                }
+                else
+                {
+                    <p class="text-success mt-2">Welcome, @User.Identity.Name!</p>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <span class="badge bg-success">Admin Access</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-info">Student Access</span>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3>System Features</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">✅ Role-based Authentication (Admin & Student)</li>
+                    <li class="list-group-item">✅ Complete CRUD Operations for Courses and Students</li>
+                    <li class="list-group-item">✅ Student Profile Image Upload</li>
+                    <li class="list-group-item">✅ Repository Pattern Implementation</li>
+                    <li class="list-group-item">✅ Admin: Full access to manage courses and students</li>
+                    <li class="list-group-item">✅ Student: View-only access to courses and student profiles</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="alert alert-info mt-4" role="alert">
+        <h5>Demo Accounts:</h5>
+        <p><strong>Admin:</strong> admin@sms.com / Admin@123</p>
+        <p><strong>Student:</strong> student@sms.com / Student@123</p>
+    </div>
+}

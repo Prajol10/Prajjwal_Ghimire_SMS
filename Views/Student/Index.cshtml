@@ -1,0 +1,58 @@
+@model IEnumerable<Prajjwal_Ghimire_SMS.Models.Student>
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Students</h2>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Create" class="btn btn-primary">Add New Student</a>
+        }
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Class</th>
+                <th>Section</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(student.ImagePath))
+                        {
+                            <img src="@student.ImagePath" alt="@student.Name" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" />
+                        }
+                        else
+                        {
+                            <img src="/images/default-avatar.png" alt="No Image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" />
+                        }
+                    </td>
+                    <td>@student.Name</td>
+                    <td>@student.Email</td>
+                    <td>@student.PhoneNumber</td>
+                    <td>@student.Class</td>
+                    <td>@student.Section</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@student.Id" class="btn btn-sm btn-info">Details</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-sm btn-warning">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@student.Id" class="btn btn-sm btn-danger">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
